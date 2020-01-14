@@ -1,28 +1,15 @@
 /*jslint plusplus: true, white: true, nomen: true, regexp: true */
-/*global define */
-
-define([
-	'./ex_callframes',
-	'./ex_control_cmds',
-	'./ex_list_cmds',
-	'./ex_dict_cmds',
-	'./ex_string_cmds',
-	'./ex_array_cmds',
-	'./ex_clock_cmds',
-	'./types',
-	'./objtype_int'
-], function(
-	ex_callframes,
-	ex_control_cmds,
-	ex_list_cmds,
-	ex_dict_cmds,
-	ex_string_cmds,
-	ex_array_cmds,
-	ex_clock_cmds,
-	types,
-	IntObj
-){
 'use strict';
+
+var ex_callframes = require('./ex_callframes.js');
+var ex_control_cmds = require('./ex_control_cmds.js');
+var ex_list_cmds = require('./ex_list_cmds.js');
+var ex_dict_cmds = require('./ex_dict_cmds.js');
+var ex_string_cmds = require('./ex_string_cmds.js');
+var ex_array_cmds = require('./ex_array_cmds.js');
+var ex_clock_cmds = require('./ex_clock_cmds.js');
+var types = require('./types.js');
+var IntObj = require('./objtype_int.js');
 
 var TclResult = types.TclResult,
 	TclError = types.TclError,
@@ -175,5 +162,4 @@ function install(interp) {
 	ex_clock_cmds.install(interp);
 }
 
-return {'install': install};
-});
+exports.install = install;

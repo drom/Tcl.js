@@ -1,14 +1,8 @@
 /*jslint plusplus: true, white: true, nomen: true */
-/*global define */
-
-define([
-	'./coreinterp',
-	'./ex_core_cmds'
-], function(
-	CoreInterp,
-	ex_core_cmds
-){
 'use strict';
+
+var CoreInterp = require('./coreinterp.js');
+var ex_core_cmds = require('./ex_core_cmds.js');
 
 function Interp(){
 	var args = Array.prototype.slice.call(arguments), i,
@@ -20,5 +14,4 @@ function Interp(){
 	return I;
 };
 
-return Interp;
-});
+module.exports = Interp;

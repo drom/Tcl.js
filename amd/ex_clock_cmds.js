@@ -1,18 +1,11 @@
-/*global define */
-define([
-	'./utils',
-	'./objtype_string',
-	'./objtype_int',
-	'./objtype_bool',
-	'./types'
-], function(
-	utils,
-	StringObj,
-	IntObj,
-	BoolObj,
-	types
-){
-	'use strict';
+'use strict';
+
+var utils = require('./utils.js');
+var StringObj = require('./objtype_string.js');
+var IntObj = require('./objtype_int.js');
+var BoolObj = require('./objtype_bool.js');
+var types = require('./types.js');
+
 	// Initially there is no 'locale' determination, only catering for simplistic clock functions
 	// based on dd mm CCYY formats, and English 'names',  used in wf. Needs better handling of this
 	// to determin the right format being passed through.
@@ -50,7 +43,7 @@ define([
 						is_isobase = true;
 					}
 					return token;
-				} 
+				}
 				if (isLetter(str.charAt(pos))) {
 					var startIndex = pos;
 					// Not using isNan as you can get false positive
@@ -86,9 +79,9 @@ define([
 	};
 	function get_month_index(mth) {
 		if (mth.length > 3){
-			return months.indexOf(mth); 
+			return months.indexOf(mth);
 		}
-		return short_months.indexOf(mth); 
+		return short_months.indexOf(mth);
 	};
 	function pad_left(val, length) {
 		var result = val.toString(), pad=length-result.length;
@@ -113,13 +106,13 @@ define([
 		switch (day) {
 			case 'thursday':
 				// set to nearest Thursday, use Sunday = 7;
-				baseDate.setDate(baseDate.getDate() +4 - (baseDate.getDay()||7)); 
+				baseDate.setDate(baseDate.getDate() +4 - (baseDate.getDay()||7));
 				break;
 			case 'monday':
 				baseDate.setDate(baseDate.getDate() +1 - (baseDate.getDay()||7));
 				break;
 			case 'sunday':
-				baseDate.setDate(baseDate.getDate() +7 - (baseDate.getDay()||7)); 
+				baseDate.setDate(baseDate.getDate() +7 - (baseDate.getDay()||7));
 				break;
 		}
 		yearStart = new Date(baseDate.getFullYear(), 0, 1);
@@ -130,7 +123,7 @@ define([
 			return y;
 		}
 		if (+y >= 69) {
-			return '19' +y; 
+			return '19' +y;
 		} else {
 			return '20' +y;
 		}
@@ -164,7 +157,7 @@ define([
 				if (format.charAt(i) === '%' && i+1 < format.length) {
 					switch (format.charAt(++i)) {
 						case '%': // insert a %
-							token  = '%'; 
+							token  = '%';
 							break;
 						case 'a': // Abbreviated weekday name
 							token = (days[baseClock.getDay()]).substring(0,3);
@@ -233,7 +226,7 @@ define([
 							token = pad_left(minute, 2);
 							break;
 						case 'n': // insert a newline
-							token  = '\\n'; 
+							token  = '\\n';
 							break;
 						case 'N': // Month number (1 -12), no leading zero
 							token = baseClock.getMonth();
@@ -246,7 +239,7 @@ define([
 								token = 'pm';
 							}
 							break;
-						case 'R': // locale specific time 
+						case 'R': // locale specific time
 							// TODO: 'r' case in 12 hour format
 							token = baseClock.toLocaleTimeString();
 							break;
@@ -302,7 +295,7 @@ define([
 					tokens.push(format.charAt(i));
 				}
 			}
-		   return tokens.join('');	
+		   return tokens.join('');
 		},
 		scan: function(args, I) {
 			/* clock scan inputString ?-option value...? */
@@ -311,9 +304,9 @@ define([
 			args.shift();
 			// simply using Date.parse(arg[0]) could be ambiguous and lead to some
 			// problems.
-			var dateString = args.shift().toString(), arg, useGmt = false, 
+			var dateString = args.shift().toString(), arg, useGmt = false,
 				baseClock = new Date(), date = new Date(), dateTokens = [], i =0,
-				hasTime = 0, hasZone = 0, hasDate = 0, hasDay = 0, hasOrdMonth = 0, hasRel =0, 
+				hasTime = 0, hasZone = 0, hasDate = 0, hasDay = 0, hasOrdMonth = 0, hasRel =0,
 				has_meridian = meridian_regEx.test(dateString) ? true : false,
 				use_dst = /dst/i.test(dateString), is_isobase = false;
 			// free-form scan is deprecated due to ambiguities, but still supported.
@@ -360,7 +353,7 @@ define([
 							min_offset = +dateTokens[pos+6]
 							break;
 					}
-					
+
 					offset = (hour_offset * 60) + min_offset + date.getTimezoneOffset(); //in minutes
 					date = new Date(date.getTime() + (offset * 60 * 1000));
 					i = pos+7;
@@ -490,7 +483,7 @@ define([
 					/-/.test(dateTokens[pos+3]) &&
 					isNumber(dateTokens[pos+4])
 				) {
-					m = get_month_index(dateTokens[pos+2]); 
+					m = get_month_index(dateTokens[pos+2]);
 					date.setFullYear(get_full_year(dateTokens[pos+4]));
 					date.setMonth(m);
 					date.setDate(dateTokens[pos]);
@@ -545,7 +538,7 @@ define([
 					short_monthsregEx.test(dateTokens[pos+1]) &&
 					isNumber(dateTokens[pos+2])
 				) {
-					m = get_month_index(dateTokens[pos+1]); 
+					m = get_month_index(dateTokens[pos+1]);
 					date.setFullYear(get_full_year(dateTokens[pos+2]));
 					date.setMonth(m);
 					date.setDate(dateTokens[pos]);
@@ -558,7 +551,7 @@ define([
 					isNumber(dateTokens[pos]) &&
 					short_monthsregEx.test(dateTokens[pos+1])
 				) {
-					m = get_month_index(dateTokens[pos+1]); 
+					m = get_month_index(dateTokens[pos+1]);
 					date.setMonth(m);
 					date.setDate(dateTokens[pos]);
 					i = pos+2;
@@ -570,7 +563,7 @@ define([
 					short_monthsregEx.test(dateTokens[pos]) &&
 					isNumber(dateTokens[pos+1])
 				) {
-					m = get_month_index(dateTokens[pos]); 
+					m = get_month_index(dateTokens[pos]);
 					date.setMonth(m);
 					date.setDate(dateTokens[pos+1]);
 					i = pos+1;
@@ -703,5 +696,5 @@ define([
 			return subcmds[subcmd](fakeargs, interp);
 		});
 	}
-	return{'install': install};
-});
+
+exports.install = install;

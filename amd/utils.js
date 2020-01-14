@@ -1,13 +1,9 @@
 /*jslint white: true, regexp: true */
-/*global define */
-define([
-	'./types',
-	'./tclobject'
-], function(
-	types,
-	tclobj
-){
 'use strict';
+
+var types = require('./types.js');
+var tclobj = require('./tclobject.js');
+
 var TclError = types.TclError, utils = {
 	glob2regex: function(glob, ignorecase) {
 		var re = String(glob).replace(/([.+\^$\\(){}|\-])/g, '\\$1');
@@ -154,5 +150,5 @@ var TclError = types.TclError, utils = {
 		throw new types.TclError('Not implemented yet', ['TCL', 'NOT_IMPLEMENTED']);
 	}
 };
-return utils;
-});
+
+module.exports = utils;

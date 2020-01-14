@@ -1,12 +1,7 @@
-/*global define */
-define([
-	'./types',
-	'./objtype_list'
-], function(
-	types,
-	ListObj
-){
 'use strict';
+
+var types = require('./types.js');
+var ListObj = require('./objtype_list.js');
 
 var SCALAR = types.SCALAR,
 	ARRAY = types.ARRAY,
@@ -144,7 +139,7 @@ function install(interp) {
 					break;
 				default:
 					throw new TclError('too many fields in argument specifier "'+args_list[i].toString()+'"', ['TCL', 'OPERATION', 'PROC', 'FORMALARGUMENTFORMAT']);
-					
+
 			}
 		}
 
@@ -227,6 +222,4 @@ function install(interp) {
 	});
 }
 
-return {'install': install};
-});
-
+exports.install = install;

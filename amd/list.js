@@ -1,11 +1,7 @@
 /*global define */
+'use strict';
 
-define([
-	'./types'
-], function(
-	types
-){
-"use strict";
+var types = require('./types.js');
 
 var hex_chars = /[\dabcdefABCDEF]/,
 	whitespace = /\s/,
@@ -159,7 +155,7 @@ function parse_tcl_list(str) { //<<<
 						escape_mode = 'octal';
 						escape_seq += c;
 						break;
-	
+
 					case 'x':
 						escape_mode = 'hex';
 						break;
@@ -565,7 +561,7 @@ function complete(str) { //<<<
 
 //>>>
 
-return {
+module.exports = {
 	list2array:			parse_tcl_list,
 	parse_tcl_list:		parse_tcl_list,
 	array2list:			serialize_tcl_list,
@@ -577,7 +573,5 @@ return {
 	complete:			complete,
 	bool:				function(){throw new Error('bool() has moved to utils');}
 };
-
-});
 
 // vim: ft=javascript foldmethod=marker foldmarker=<<<,>>> ts=4 shiftwidth=4

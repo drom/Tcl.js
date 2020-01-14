@@ -1,12 +1,10 @@
 /*jshint eqnull:true */
-/*global define */
-
 /* Current parser bugs:
    None known
  */
+'use strict';
 
-define(['./types'], function(types){
-"use strict";
+var types = require('./types.js');
 
 var iface, e,
 	TEXT	= 0,
@@ -949,7 +947,7 @@ function expr2stack(expr) {
 		switch (expr[i][0]) {
 			case OPERAND: P.push(expr[i]); break;
 			case LPAREN: stack.push(expr[i]); break;
-			case RPAREN: 
+			case RPAREN:
 				if (stack.length === 0) {
 					throw new Error('Unbalanced close parenthesis in expression');
 				}
@@ -1010,5 +1008,5 @@ for (e in t) {
 		iface.tokenname[t[e]] = e;
 	}
 }
-return iface;
-});
+
+module.exports = iface;

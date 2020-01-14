@@ -1,16 +1,8 @@
-/*jslint plusplus: true, white: true, nomen: true, continue: true */
-/*global define */
-
-define([
-	'./tclobject',
-	'./parser',
-	'./types'
-], function(
-	tclobj,
-	parser,
-	types
-){
 'use strict';
+
+var tclobj = require('./tclobject.js');
+var parser = require('./parser.js');
+var types = require('./types.js');
 
 function parse2string(parse) {
 	return 'TODO: objtype_expr parse2string';
@@ -74,5 +66,4 @@ tclobj.NewExpr = function(val){
 	return new ExprObj(val);
 };
 
-return ExprObj;
-});
+module.exports = ExprObj;

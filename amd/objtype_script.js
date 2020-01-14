@@ -1,14 +1,8 @@
-/*global define */
-define([
-	'./tclobject',
-	'./parser',
-	'./types'
-], function(
-	tclobj,
-	parser,
-	types
-){
 'use strict';
+
+var tclobj = require('./tclobject.js');
+var parser = require('./parser.js');
+var types = require('./types.js');
 
 function commands2string(commands) {
 	var i, j, out = '';
@@ -99,5 +93,4 @@ tclobj.NewScript = function(val){
 	return new ScriptObj(val);
 };
 
-return ScriptObj;
-});
+module.exports = ScriptObj;

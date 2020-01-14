@@ -1,20 +1,11 @@
-/*global define */
-define([
-	'./list',
-	'./types',
-	'./utils',
-	'./tclobject',
-	'./objtype_dict',
-	'./objtype_list'
-], function(
-	tcllist,
-	types,
-	utils,
-	tclobj,
-	DictObj,
-	ListObj
-){
 'use strict';
+
+var tcllist = require('./list.js');
+var types = require('./types.js');
+var utils = require('./utils.js');
+var tclobj = require('./tclobject.js');
+var DictObj = require('./objtype_dict.js');
+var ListObj = require('./objtype_list.js');
 
 var TclError = types.TclError, subcmds;
 
@@ -149,7 +140,7 @@ subcmds = {
 				I.set_scalar(valuevar, v);
 				return I.exec(body, function(res){
 					switch (res.code) {
-						case types.OK:			
+						case types.OK:
 							if (utils.bool(res.result.toString())) {
 								outdictvals[k] = dictvals[k];
 								outdictvals[k].IncrRefCount();
@@ -578,5 +569,4 @@ function install(interp) {
 	});
 }
 
-return {'install': install};
-});
+exports.install = install;

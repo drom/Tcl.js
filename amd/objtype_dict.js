@@ -1,16 +1,9 @@
 /*jslint plusplus: true, white: true, nomen: true */
-/*global define */
-
-define([
-	'./tclobject',
-	'./types',
-	'./list'
-], function(
-	tclobj,
-	types,
-	list
-){
 'use strict';
+
+var tclobj = require('./tclobject.js');
+var types = require('./types.js');
+var list = require('./list.js');
 
 var dicthandlers = {
 	type: 'dict',
@@ -135,5 +128,4 @@ tclobj.NewDict = function(val){
 	return new DictObj(val);
 };
 
-return DictObj;
-});
+module.exports = DictObj;

@@ -1,20 +1,12 @@
 /*global define */
-define([
-	'./utils',
-	'./tclobject',
-	'./objtype_bool',
-	'./objtype_list',
-	'./objtype_int',
-	'./types'
-], function(
-	utils,
-	tclobj,
-	BoolObj,
-	ListObj,
-	IntObj,
-	types
-){
 'use strict';
+
+var utils = require('./utils.js');
+var tclobj = require('./tclobject.js');
+var BoolObj = require('./objtype_bool.js');
+var ListObj = require('./objtype_list.js');
+var IntObj = require('./objtype_int.js');
+var types = require('./types.js');
 
 var subcmds, TclError = types.TclError,
 	ARRAY = types.ARRAY;
@@ -187,5 +179,4 @@ function install(interp) {
 	});
 }
 
-return {'install': install};
-});
+exports.install = install;

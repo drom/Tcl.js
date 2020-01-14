@@ -1,16 +1,9 @@
 /*jslint plusplus: true, white: true, nomen: true */
-/*global define */
-
-define([
-	'./tclobject',
-	'./list',
-	'./types'
-], function(
-	tclobj,
-	list,
-	types
-){
 'use strict';
+
+var tclobj = require('./tclobject.js');
+var list = require('./list.js');
+var types = require('./types.js');
 
 var listhandlers;
 
@@ -87,5 +80,4 @@ tclobj.NewList = function(val){
 	return new ListObj(val);
 };
 
-return ListObj;
-});
+module.exports = ListObj;

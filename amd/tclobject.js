@@ -1,6 +1,4 @@
 /*jshint eqnull:true, newcap:false */
-/*global define */
-define(function(){
 'use strict';
 
 var iface, objtypes = {}, TclObjectBase, jsvalhandlers, NewObj,
@@ -168,5 +166,4 @@ iface = {
 	'AsVal': function(value){return value instanceof TclObject ? value.valueOf() : value;}
 };
 
-return iface;
-});
+module.exports = iface;

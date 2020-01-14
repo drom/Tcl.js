@@ -1,14 +1,8 @@
 /*jshint eqnull:true */
-/*global define */
-
-define([
-	'tcl/parser',
-	'tcl/list'
-], function(
-	parser,
-	tcllist
-){
 'use strict';
+
+var parser = require('tcl/parser.js');
+var tcllist = require('tcl/list.js');
 
 var iface,
 	EXPRARG = parser.EXPRARG,
@@ -674,5 +668,4 @@ iface = {
 	'reconstitute': reconstitute
 };
 
-return iface;
-});
+module.exports = iface;

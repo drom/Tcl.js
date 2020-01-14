@@ -1,16 +1,9 @@
 /*jslint plusplus: true, white: true, nomen: true */
-/*global define */
-
-define([
-	'./tclobject',
-	'./types',
-	'./utils'
-], function(
-	tclobj,
-	types,
-	utils
-){
 'use strict';
+
+var tclobj = require('./tclobject.js');
+var types = require('./types.js');
+var utils = require('./utils.js');
 
 var inthandlers = {
 	type: 'int',
@@ -53,5 +46,4 @@ tclobj.NewInt = function(val){
 types.IntOne = new IntObj(1);
 types.IntZero = new IntObj(0);
 
-return IntObj;
-});
+module.exports = IntObj;

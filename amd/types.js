@@ -1,7 +1,7 @@
 /*jslint plusplus: true, white: true, nomen: true */
-/*global define */
-define(['./tclobject'], function(tclobj){
 'use strict';
+
+var tclobj = require('./tclobject.js');
 
 var types = {
 	SCALAR: 0,
@@ -53,5 +53,4 @@ types.TclError = TclError;
 types.TclObject = tclobj.TclObject;
 types.TclObjectBase = tclobj.TclObjectBase;
 
-return types;
-});
+module.exports = types;

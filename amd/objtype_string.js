@@ -1,12 +1,7 @@
 /*jslint plusplus: true, white: true, nomen: true */
-/*global define */
-
-define([
-	'./tclobject'
-], function(
-	tclobj
-){
 'use strict';
+
+var tclobj = require('./tclobject.js');
 
 var stringhandlers = {
 	type: 'string',
@@ -39,5 +34,4 @@ tclobj.NewString = function(val){
 	return new StringObj(val);
 };
 
-return StringObj;
-});
+module.exports = StringObj;

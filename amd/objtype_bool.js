@@ -1,16 +1,9 @@
 /*jslint plusplus: true, white: true, nomen: true */
-/*global define */
-
-define([
-	'./tclobject',
-	'./types',
-	'./utils'
-], function(
-	tclobj,
-	types,
-	utils
-){
 'use strict';
+
+var tclobj = require('./tclobject.js');
+var types = require('./types.js');
+var utils = require('./utils.js');
 
 var boolhandlers = {
 	type: 'bool',
@@ -93,6 +86,4 @@ tclobj.NewBool = function(val){
 	return new BoolObj(val);
 };
 
-return BoolObj;
-});
-
+module.exports = BoolObj;

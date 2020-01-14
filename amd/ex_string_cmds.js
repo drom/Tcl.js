@@ -1,21 +1,12 @@
 /*jshint bitwise:false */
-/*global define, require */
-define([
-	'./utils',
-	'./objtype_string',
-	'./objtype_int',
-	'./objtype_bool',
-	'./list',
-	'./types'
-], function(
-	utils,
-	StringObj,
-	IntObj,
-	BoolObj,
-	tcllist,
-	types
-){
 'use strict';
+
+var utils = require('./utils.js');
+var StringObj = require('./objtype_string.js');
+var IntObj = require('./objtype_int.js');
+var BoolObj = require('./objtype_bool.js');
+var tcllist = require('./list.js');
+var types = require('./types.js');
 
 var subcmds, TclError = types.TclError, class_tests;
 
@@ -448,5 +439,4 @@ function install(interp) {
 	});
 }
 
-return {'install': install};
-});
+exports.install = install;

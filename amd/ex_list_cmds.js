@@ -1,18 +1,10 @@
 /*jslint plusplus: true, white: true, nomen: true, regexp: true */
-/*global define */
-
-define([
-	'./tclobject',
-	'./objtype_list',
-	'./utils',
-
-	'./objtype_int'
-], function(
-	tclobj,
-	ListObj,
-	utils
-){
 'use strict';
+
+var tclobj = require('./tclobject.js');
+var ListObj = require('./objtype_list.js');
+var utils = require('./utils.js');
+// ??? './objtype_int',
 
 function resolve_index(list, obj) {
 	return utils.resolve_idx(list.length, obj);
@@ -120,6 +112,4 @@ function install(interp) {
 	});
 }
 
-return {'install': install};
-});
-
+exports.install = install;

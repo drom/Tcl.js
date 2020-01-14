@@ -1,22 +1,12 @@
 /*jslint plusplus: true, white: true, nomen: true */
-/*global define */
-
-define([
-	'./types',
-	'./utils',
-	'./objtype_bool',
-	'./objtype_dict',
-	'./objtype_list',
-	'./objtype_int'
-], function(
-	types,
-	utils,
-	BoolObj,
-	DictObj,
-	ListObj,
-	IntObj
-){
 'use strict';
+
+var types = require('./types.js');
+var utils = require('./utils.js');
+var BoolObj = require('./objtype_bool.js');
+var DictObj = require('./objtype_dict.js');
+var ListObj = require('./objtype_list.js');
+var IntObj = require('./objtype_int.js');
 
 var TclError = types.TclError,
 	TclResult = types.TclResult,
@@ -381,5 +371,4 @@ function install(interp){
 	interp.registerAsyncCommand('lmap', foreach(true));
 }
 
-return {'install': install};
-});
+exports.install = install;

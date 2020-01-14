@@ -1,30 +1,16 @@
 /*jshint curly:false */
-/*global define */
+'use strict';
 
-define([
-	'./parser',
-	'./tclobject',
-	'./utils',
-	'./types',
-	'./objtype_list',
-	'./objtype_script',
-	'./objtype_expr',
-	'./objtype_int',
-	'./objtype_string',
-	'./objtype_bool'
-], function(
-	parser,
-	tclobj,
-	utils,
-	types,
-	ListObj,
-	ScriptObj,
-	ExprObj,
-	IntObj,
-	StringObj,
-	BoolObj
-){
-"use strict";
+var parser = require('./parser.js');
+var tclobj = require('./tclobject.js');
+var utils = require('./utils.js');
+var types = require('./types.js');
+var ListObj = require('./objtype_list.js');
+var ScriptObj = require('./objtype_script.js');
+var ExprObj = require('./objtype_expr.js');
+var IntObj = require('./objtype_int.js');
+var StringObj = require('./objtype_string.js');
+var BoolObj = require('./objtype_bool.js');
 
 var TclError = types.TclError,
 	TclResult = types.TclResult,
@@ -64,7 +50,7 @@ function trampoline(res) {
 	return res;
 }
 
-return function(/* extensions... */){
+module.exports = function(/* extensions... */){
 	var interp_args = Array.prototype.slice.call(arguments),
 		I = this, mathops, mathfuncs, mathop_cache = [null, {}, {}];
 
@@ -1379,4 +1365,3 @@ return function(/* extensions... */){
 		}
 	}());
 };
-});
